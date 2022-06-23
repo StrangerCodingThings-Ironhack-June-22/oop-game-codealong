@@ -2,11 +2,31 @@
 
 class Game {
     constructor(){
+        this.time = 0;
         this.player = null; // will store an instance of the class Player
+        this.obstacleArr = []; // will store multiple instances of the class Obstacle
     }
     start(){
         this.player = new Player();
         this.attachEventListeners();
+
+        setInterval(() => {
+
+            // move all obstacles
+            this.obstacleArr.forEach((obstacleInstance) => {
+                obstacleInstance.moveDown();
+            });
+
+            // create new obstacle
+            if(this.time % 60 === 0){
+                const newObstacle = new Obstacle();
+                this.obstacleArr.push(newObstacle);
+            }
+
+            this.time++;
+
+        }, 50);
+
     }
     attachEventListeners(){
         document.addEventListener("keydown", (event) => {
@@ -57,6 +77,34 @@ class Player {
 }
 
 
+class Obstacle {
+    constructor(){
+        this.positionX = 45;
+        this.positionY = 90;
+
+        this.domElement = this.createDomElement();
+
+    }
+    createDomElement(){
+        // create dom element
+        const newElm = document.createElement('div');
+
+        // set id and css 
+        newElm.className = "obstacle";
+        newElm.style.left = this.positionX + "vw";
+        newElm.style.bottom = this.positionY + "vh";
+
+        // append to the dom
+        const boardElm = document.getElementById("board"); //
+        boardElm.appendChild(newElm);
+
+        return newElm;
+    }
+    moveDown(){
+        this.positionY--;
+        this.domElement.style.bottom = this.positionY + "vh";
+    }
+}
 
 
 
