@@ -10,7 +10,7 @@ body {
     overflow: hidden;
 }
 
-#player {
+.player {
     background-color: rgb(104, 45, 241);
     position: absolute;
 }

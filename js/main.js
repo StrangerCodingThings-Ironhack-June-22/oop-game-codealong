@@ -60,22 +60,25 @@ class Game {
 }
 
 
-class Player {
-    constructor(){
-        this.positionX = 45;
-        this.positionY = 0;
-        this.height = 10;
-        this.width = 15;
+class Thing {
+    constructor(className, width, height, positionX, positionY){
+        
+        this.className = className;
+        
+        this.width = width;
+        this.height = height;
+        this.positionX = positionX;
+        this.positionY = positionY;
 
         this.domElement = this.createDomElement();
-
     }
+
     createDomElement(){
         // create dom element
         const newElm = document.createElement('div');
 
         // set id and css 
-        newElm.id = "player";
+        newElm.className = this.className;
         newElm.style.left = this.positionX + "vw";
         newElm.style.bottom = this.positionY + "vh";
         newElm.style.width = this.width + "vw";
@@ -87,6 +90,19 @@ class Player {
 
         return newElm;
     }
+}
+
+
+class Player extends Thing {
+    constructor(){
+        const width = 20;
+        const height = 10;
+        const positionX = 50 - width/2;
+        const positionY = 0;
+
+        super("player", width, height, positionX, positionY);
+    }
+
     moveLeft(){
         this.positionX--;
         this.domElement.style.left = this.positionX + "vw";
@@ -98,31 +114,15 @@ class Player {
 }
 
 
-class Obstacle {
+
+class Obstacle extends Thing {
     constructor(){
-        this.width = 10;
-        this.height = 10;
-        this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // generate random number between 0 and (100-width)        
-        this.positionY = 90;
+        const width = 10;
+        const height = 10;
+        const positionX = Math.floor(Math.random() * (100 - width + 1)); // generate random number between 0 and (100-width)        
+        const positionY = 90;
 
-        this.domElement = this.createDomElement();
-    }
-    createDomElement(){
-        // create dom element
-        const newElm = document.createElement('div');
-
-        // set id and css 
-        newElm.className = "obstacle";
-        newElm.style.left = this.positionX + "vw";
-        newElm.style.bottom = this.positionY + "vh";
-        newElm.style.width = this.width + "vw";
-        newElm.style.height = this.height + "vh";
-
-        // append to the dom
-        const boardElm = document.getElementById("board"); //
-        boardElm.appendChild(newElm);
-
-        return newElm;
+        super("obstacle", width, height, positionX, positionY);
     }
     moveDown(){
         this.positionY--;

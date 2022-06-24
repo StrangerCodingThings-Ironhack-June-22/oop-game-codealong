@@ -22,8 +22,8 @@ Move player with arrow keys :)
 # Further Improvements:
 
 Fix:
+- [x] avoid repeating code for Player and Obstacle class (inheritance)
 - [ ] prevent player from going outside
-- [ ] avoid repeating code for Player and Obstacle class (inheritance)
 
 
 Functionality:
