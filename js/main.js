@@ -18,9 +18,17 @@ class Game {
                 this.obstacleArr.push(newObstacle);
             }
 
-            // move all obstacles
+            // move & remove obstacles
             this.obstacleArr.forEach((obstacleInstance) => {
+                
+                // move
                 obstacleInstance.moveDown();
+
+                // remove old obstacles
+                if( (obstacleInstance.positionY + obstacleInstance.height) === 0){
+                    this.obstacleArr.shift(); // remove from array (we remove the first obstacle in the array)
+                    obstacleInstance.domElement.remove(); // remove from the DOM
+                }
             });
 
             // detect collision
@@ -56,8 +64,8 @@ class Player {
     constructor(){
         this.positionX = 45;
         this.positionY = 0;
-        this.height = 20;
-        this.width = 10;
+        this.height = 10;
+        this.width = 15;
 
         this.domElement = this.createDomElement();
 
