@@ -35,10 +35,9 @@ class Game {
                 }
             });
 
-
             this.time++;
 
-        }, 50);
+        }, 30);
 
     }
     attachEventListeners(){
@@ -93,13 +92,12 @@ class Player {
 
 class Obstacle {
     constructor(){
-        this.positionX = 45;
-        this.positionY = 90;
         this.width = 10;
         this.height = 10;
+        this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // generate random number between 0 and (100-width)        
+        this.positionY = 90;
 
         this.domElement = this.createDomElement();
-
     }
     createDomElement(){
         // create dom element
