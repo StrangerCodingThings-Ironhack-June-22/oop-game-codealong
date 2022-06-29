@@ -13,10 +13,7 @@ Move player with arrow keys :)
 
 # Demo
 
-@todo :)
-
-
-
+[https://strangercodingthings-ironhack-june-22.github.io/oop-game-codealong/](https://strangercodingthings-ironhack-june-22.github.io/oop-game-codealong/)
 
 
 # Further Improvements:
